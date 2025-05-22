@@ -3,7 +3,7 @@ using namespace std;
 
 int main() {
     int a,b,c;
-    con >> a >> b >> c;
+    cin >> a >> b >> c;
 
     int sum=a+b+c;
     int avg = (a + b + c)/3;
