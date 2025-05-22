@@ -5,6 +5,6 @@ int main() {
     int A,B;
     cin >> A >> B;
 
-    cout << A+B << " " << (A+B)/2;
+    cout << A+B << " " << (double)(A+B)/2;
     return 0;
 }
