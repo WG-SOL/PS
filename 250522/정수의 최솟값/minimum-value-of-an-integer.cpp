@@ -6,7 +6,7 @@ using namespace std;
 int a, b, c;
 
 int find_min(int a, int b, int c){
-    int temp=0;
+    int temp=a;
     temp = min(temp,a);
     temp = min(temp,b);
     temp = min(temp,c);
