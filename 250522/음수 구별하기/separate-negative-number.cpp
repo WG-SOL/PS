@@ -7,7 +7,10 @@ int main() {
     cin >> N;
 
     if(N<0){
-        cout << N <<"\nminus";
+        cout << N <<"\n" <<"minus";
+    }
+    else{
+        cout << N;
     }
 
     return 0;
