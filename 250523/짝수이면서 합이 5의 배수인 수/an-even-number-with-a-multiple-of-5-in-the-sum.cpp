@@ -6,12 +6,11 @@ using namespace std;
 
 
 string find(string temp){
-    if(stoi(temp) %2 ==0){
-        int n = (temp[0]-'0')+(temp[1]-'0');
-        if(n % 5==0){
+    int n = (temp[0]-'0')+(temp[1]-'0');
+    if(stoi(temp) %2 ==0 && n % 5==0){    
             return "Yes";
         }
-    }
+    
     else return "No";
 }
 
