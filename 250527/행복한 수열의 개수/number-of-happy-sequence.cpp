@@ -13,9 +13,10 @@ bool row_find(int row, int num){
 
         for(int j=0; j<n-1; j++){
             if(grid[row][j] == grid[row][j+1]){
-                temp++; 
+                temp++;
+                flag = true; 
                 if(temp == num) {
-                    flag = true;
+                    
                     return flag;
                 }
             }
@@ -34,8 +35,8 @@ bool col_find(int col, int num){
         for(int i=0; i<n-1; i++){
             if(grid[i][col] == grid[i+1][col]){
                 temp++;
+                flag = true;
                 if(temp == num) {
-                    flag = true;
                     return flag;
                 }
             }
