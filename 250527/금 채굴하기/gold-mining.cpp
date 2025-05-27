@@ -1,44 +1,50 @@
 #include <iostream>
 #include <algorithm>
-
 using namespace std;
 
 int n, m;
 int grid[20][20];
 
-
 int GetArea(int k) {
-    return k * k + (k+1) * (k+1); 
+    return k * k + (k + 1) * (k + 1);
 }
 
-// 주어진 k에 대하여 채굴 가능한 금의 개수를 반환합니다.
+// 마름모 범위로 금의 개수를 셈
 int GetNumOfGold(int row, int col, int k) {
     int num_of_gold = 0;
+    for (int d = 0; d <= k; d++) {
+        for (int dx = -d; dx <= d; dx++) {
+            int dy = d - abs(dx);
 
-    for(int i = 0; i < n; i++)
-        for(int j = 0; j < n; j++)
-            if(abs(row - i) + abs(col - j) <= k)
-                num_of_gold += grid[i][j];
+            // (row+dx, col+dy)
+            int nx1 = row + dx;
+            int ny1 = col + dy;
+            if (nx1 >= 0 && nx1 < n && ny1 >= 0 && ny1 < n)
+                num_of_gold += grid[nx1][ny1];
 
+            // (row+dx, col-dy) (dy != 0일 때만 중복 방지)
+            if (dy != 0) {
+                int ny2 = col - dy;
+                if (nx1 >= 0 && nx1 < n && ny2 >= 0 && ny2 < n)
+                    num_of_gold += grid[nx1][ny2];
+            }
+        }
+    }
     return num_of_gold;
 }
 
 int main() {
-    int max_gold = 0;
-
     cin >> n >> m;
-    for(int row = 0; row < n; row++)
-        for(int col = 0; col < n; col++)
-            cin >> grid[row][col];
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            cin >> grid[i][j];
 
-    
-    for(int row = 0; row < n; row++) {
-        for(int col = 0; col < n; col++) {
-            for(int k = 0; k <= 2 * (n-1); k++) {
+    int max_gold = 0;
+    for (int row = 0; row < n; row++) {
+        for (int col = 0; col < n; col++) {
+            for (int k = 0; k <= 2 * (n - 1); k++) {
                 int num_of_gold = GetNumOfGold(row, col, k);
-
-                
-                if(num_of_gold * m >= GetArea(k))
+                if (num_of_gold * m >= GetArea(k))
                     max_gold = max(max_gold, num_of_gold);
             }
         }
