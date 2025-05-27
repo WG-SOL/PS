@@ -39,7 +39,6 @@ bool col_find(int col, int num){
                 flag = false;
             }
         }
-    
 
     return flag;
 }
