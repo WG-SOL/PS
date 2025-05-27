@@ -6,34 +6,36 @@ int n, m;
 int grid[200][200];
 int max_value = 0;
 
-void neon(int x, int y) {
-    // 중심 기준 3칸의 L자(ㄱ, ㄴ, 반대 ㄱ, 반대 ㄴ)
-    // ㄱ자: (x, y), (x, y-1), (x+1, y)
-    if (y - 1 >= 0 && x + 1 < n)
-        max_value = max(max_value, grid[x][y] + grid[x][y - 1] + grid[x + 1][y]);
+// 6가지 트로미노 형태만 검사
+void check(int x, int y) {
+    // 블록 좌표 상대 위치
+    // ㄱ, ㄴ, 반ㄱ, 반ㄴ, ㅡ, ㅣ
+    int dx[6][2] = {
+        {0, 1}, { -1, 0 }, { 1, 0 }, { 0, -1 }, {0, 1}, {-1, 1}
+    };
+    int dy[6][2] = {
+        {-1, 0}, {0, 1}, {0, 1}, { -1, 0 }, {-1, 1}, {0, 0}
+    };
 
-    // ㄴ자: (x, y), (x-1, y), (x, y+1)
-    if (x - 1 >= 0 && y + 1 < m)
-        max_value = max(max_value, grid[x][y] + grid[x - 1][y] + grid[x][y + 1]);
+    // 각각의 형태 적용
+    for (int k = 0; k < 6; k++) {
+        int sum = grid[x][y];
+        bool valid = true;
 
-    // 반대 ㄱ: (x, y), (x, y+1), (x+1, y)
-    if (y + 1 < m && x + 1 < n)
-        max_value = max(max_value, grid[x][y] + grid[x][y + 1] + grid[x + 1][y]);
+        for (int i = 0; i < 2; i++) {
+            int nx = x + dx[k][i];
+            int ny = y + dy[k][i];
 
-    // 반대 ㄴ: (x, y), (x-1, y), (x, y-1)
-    if (x - 1 >= 0 && y - 1 >= 0)
-        max_value = max(max_value, grid[x][y] + grid[x - 1][y] + grid[x][y - 1]);
-}
+            if (nx < 0 || ny < 0 || nx >= n || ny >= m) {
+                valid = false;
+                break;
+            }
+            sum += grid[nx][ny];
+        }
 
-void space_bar(int x, int y) {
-    // 중심 기준 3칸의 일자형 (ㅡ, ㅣ)
-    // 가로 (ㅡ): (x, y-1), (x, y), (x, y+1)
-    if (y - 1 >= 0 && y + 1 < m)
-        max_value = max(max_value, grid[x][y - 1] + grid[x][y] + grid[x][y + 1]);
-
-    // 세로 (ㅣ): (x-1, y), (x, y), (x+1, y)
-    if (x - 1 >= 0 && x + 1 < n)
-        max_value = max(max_value, grid[x - 1][y] + grid[x][y] + grid[x + 1][y]);
+        if (valid)
+            max_value = max(max_value, sum);
+    }
 }
 
 int main() {
@@ -44,10 +46,8 @@ int main() {
             cin >> grid[i][j];
 
     for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++) {
-            neon(i, j);
-            space_bar(i, j);
-        }
+        for (int j = 0; j < m; j++)
+            check(i, j);
 
     cout << max_value;
     return 0;
