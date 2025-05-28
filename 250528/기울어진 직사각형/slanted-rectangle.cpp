@@ -46,8 +46,8 @@ int main() {
     // Please write your code here.
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            find(i,j);
             check=0;
+            find(i,j);
         }
     }
 
