@@ -16,6 +16,9 @@ void find(int x, int y)
         if((x-1)>=0 && (y-1)>=0){
             value += grid[x-1][y-1];
         }
+        else{
+            value -= grid[x][y];
+        }
 
         x -= 1;
         y += 1;
