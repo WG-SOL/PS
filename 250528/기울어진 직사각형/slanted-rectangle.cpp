@@ -9,39 +9,37 @@ int max_value = 0;
 
 void find(int x, int y, int a, int b) {
     int sum = 0;
-    int cx = x;
-    int cy = y;
 
     // 1. ↘ 방향 a칸
     for (int i = 0; i < a; i++) {
-        cx += 1;
-        cy += 1;
-        if (cx < 0 || cy < 0 || cx >= n || cy >= n) return;
-        sum += grid[cx][cy];
+        x += 1;
+        y += 1;
+        if (x < 0 || y < 0 || x >= n || y >= n) return;
+        sum += grid[x][y];
     }
 
     // 2. ↙ 방향 b칸
     for (int i = 0; i < b; i++) {
-        cx += 1;
-        cy -= 1;
-        if (cx < 0 || cy < 0 || cx >= n || cy >= n) return;
-        sum += grid[cx][cy];
+        x += 1;
+        y -= 1;
+        if (x < 0 || y < 0 || x >= n || y >= n) return;
+        sum += grid[x][y];
     }
 
     // 3. ↖ 방향 a칸
     for (int i = 0; i < a; i++) {
-        cx -= 1;
-        cy -= 1;
-        if (cx < 0 || cy < 0 || cx >= n || cy >= n) return;
-        sum += grid[cx][cy];
+        x -= 1;
+        y -= 1;
+        if (x < 0 || y < 0 || x >= n || y >= n) return;
+        sum += grid[x][y];
     }
 
     // 4. ↗ 방향 b칸
     for (int i = 0; i < b; i++) {
-        cx -= 1;
-        cy += 1;
-        if (cx < 0 || cy < 0 || cx >= n || cy >= n) return;
-        sum += grid[cx][cy];
+        x -= 1;
+        y += 1;
+        if (x < 0 || y < 0 || x >= n || y >= n) return;
+        sum += grid[x][y];
     }
 
     max_value = max(max_value, sum);
