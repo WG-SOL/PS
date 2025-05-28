@@ -4,7 +4,7 @@ using namespace std;
 
 int n, m;
 int grid[20][20];
-int max_value;
+int max_value=-1;
 
 bool validation(int x, int y, int x2, int y2){
     for(int i=x; i<=x2; i++){
@@ -24,10 +24,7 @@ int main() {
         }
     }
 
-    if(!validation(0,0,n,m)){
-        cout << -1;
-        return 0;
-    }
+    
 
 
     // Please write your code here.
