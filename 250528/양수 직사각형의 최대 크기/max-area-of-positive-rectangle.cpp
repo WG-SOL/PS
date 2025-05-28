@@ -24,6 +24,12 @@ int main() {
         }
     }
 
+    if(!validation(0,0,n,m)){
+        cout << -1;
+        return 0;
+    }
+
+
     // Please write your code here.
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
