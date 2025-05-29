@@ -9,30 +9,26 @@ int sub[101][101]; // 회전 후 동시 평균용
 // (r1,c1)~(r1,c2) + (r1,c2)~(r2,c2)까진 우회전으로 밀고
 // (r2,c2)~(r2,c1) + (r2,c1)~(r1,c1) 까진 좌회전으로 밀어내기
 void rotation(int r1, int c1, int r2, int c2){
-    int top_left     = a[r1][c1];
-    int top_right    = a[r1][c2];
-    int bottom_right = a[r2][c2];
-    int bottom_left  = a[r2][c1];
+    int temp = a[r1][c1]; // 좌상단 값 저장
 
-    // 위쪽 행 → 오른쪽으로 이동
-    for (int i = c2; i > c1; i--)
-        a[r1][i] = a[r1][i - 1];
-    a[r1][c1 + 1] = top_left;
-
-    // 오른쪽 열 ↓ 아래로 이동
-    for (int i = r2; i > r1; i--)
-        a[i][c2] = a[i - 1][c2];
-    a[r1 + 1][c2] = top_right;
-
-    // 아래쪽 행 ← 왼쪽으로 이동
-    for (int i = c1; i < c2; i++)
-        a[r2][i] = a[r2][i + 1];
-    a[r2][c2 - 1] = bottom_right;
-
-    // 왼쪽 열 ↑ 위로 이동
+    // 왼쪽 열 ↑
     for (int i = r1; i < r2; i++)
-        a[i][c1] = a[i + 1][c1];
-    a[r2 - 1][c1] = bottom_left;
+        a[i][c1] = a[i+1][c1];
+
+    // 아래쪽 행 ←
+    for (int i = c1; i < c2; i++)
+        a[r2][i] = a[r2][i+1];
+
+    // 오른쪽 열 ↓
+    for (int i = r2; i > r1; i--)
+        a[i][c2] = a[i-1][c2];
+
+    // 위쪽 행 →
+    for (int i = c2; i > c1+1; i--)
+        a[r1][i] = a[r1][i-1];
+
+    a[r1][c1+1] = temp; // 복원
+
 }
 
 void change(int r1, int c1, int r2, int c2){
@@ -75,12 +71,6 @@ int main() {
 
     // Please write your code here.
 
-
-
-
-
-
-
     //Output
    for(int i=1; i<=n; i++){
         for(int j=1; j<=m; j++){
@@ -88,10 +78,6 @@ int main() {
         }
         cout << "\n";
     }
-
-
-
-
 
     return 0;
 }
