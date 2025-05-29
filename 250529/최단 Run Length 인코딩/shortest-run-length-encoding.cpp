@@ -17,7 +17,7 @@ int find_RLE(string s) {
             count++;
         } else {
             result.push_back(s[i - 1]);
-            result += to_string(count);
+            result.push_back(count + '0');
             count = 1;
         }
     }
