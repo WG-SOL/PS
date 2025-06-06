@@ -17,10 +17,12 @@ int main() {
 
     int counter=0;
     for(int i=0; i<n; i++){
-        if(m[arr[i]] && m[k-arr[i]]) counter++;
+        if(m[arr[i]]){
+            if(m[k-arr[i]]) counter++;
+        }
     }
 
-    cout << counter;
+    cout << counter/2;
 
 
 
