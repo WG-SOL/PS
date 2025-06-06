@@ -16,17 +16,12 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         cin >> arr[i]; // (1,1,3,2,3) : 원소
-        my_m[i] = arr[i];
+        my_m[arr[i]]++;
     }
 
     for (int i = 0; i < m; i++) {
         cin >> nums[i]; // query, 없다면 0
-        int counter=0;
-        for(int j=0; j<n; j++){
-            if(my_m[j] == nums[i]) counter++;
-        }
-        cout << counter << " ";
-        counter=0;
+        cout << my_m[nums[i]] <<  " ";
     }
 
 
