@@ -26,7 +26,7 @@ int main() {
         freq[arr[i]]--; // 중복 제거
 
         for(int j = 0; j < i; j++) { // 한개 더 선택
-            if(freq.count(k - arr[i] - arr[j]))
+            if(freq.count(k - arr[i] - arr[j])>0)
                 ans += freq[k - arr[i] - arr[j]];
         }
     }
