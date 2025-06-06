@@ -7,7 +7,7 @@ int n;
 int x[100000], y[100000];
 
 int main() {
-    unordered_map<int,int> point;
+    unordered_map<long long,long long> point;
 
     cin >> n;
     for (int i = 0; i < n; i++) {
