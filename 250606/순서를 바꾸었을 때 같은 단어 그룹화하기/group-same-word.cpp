@@ -1,44 +1,30 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
-#include <vector>
 #include <algorithm>
 
 using namespace std;
 
+int n;
+string words[1000];
+
 int main() {
-    int n;
     cin >> n;
 
-    unordered_map<string, int> group;
+    unordered_map<string,int> freq;
     for (int i = 0; i < n; i++) {
-        string word;
-        cin >> word;
-
-        for (char& c : word) {
-            c = tolower(c);
-        }
-
-        vector<int> freq(26, 0);
-        for (char c : word) {
-            freq[c - 'a']++;
-        }
-
-        string key;
-        for (int count : freq) {
-            key += to_string(count);  
-        }
-
-        group[key]++;
+        cin >> words[i];
+        sort(words[i].begin(),words[i].end());
+        freq[words[i]]++;
     }
 
-    // 가장 큰 그룹 크기 찾기
-    int max_value = 0;
-    for (auto p : group) {
-        max_value = max(max_value, p.second);
+    int max_value=0;
+    for(int i=0; i<n; i++){
+        max_value = max(freq[words[i]],max_value);
     }
+    // Please write your code here.
 
-    cout << max_value << endl;
-
+    cout << max_value;
+    
     return 0;
 }
