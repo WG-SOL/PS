@@ -20,13 +20,13 @@ int main() {
         freq[arr[i]]++;
     }
 
-    /
+    
     for(int i = 0; i < n; i++) {
         
         freq[arr[i]]--; // 중복 제거
 
         for(int j = 0; j < i; j++) { // 한개 더 선택
-            if(freq.count(k - arr[i] - arr[j])>0)
+            if(freq.count(k - arr[i] - arr[j]))
                 ans += freq[k - arr[i] - arr[j]];
         }
     }
