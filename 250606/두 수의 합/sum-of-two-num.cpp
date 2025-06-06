@@ -12,14 +12,14 @@ int main() {
     sort(arr, arr + n);
 
     int left = 0, right = n - 1;
-    int result = 0;
+    long long result = 0;
 
     while (left < right) {
         int sum = arr[left] + arr[right];
 
         if (sum == k) {
             int l_cnt = 1, r_cnt = 1;
-            
+
             while (left + 1 < right && arr[left] == arr[left + 1]) {
                 l_cnt++; 
                 left++;
@@ -35,8 +35,9 @@ int main() {
                 break;
             }
 
-            result += l_cnt * r_cnt;
-            left++; right--;
+            result += 1LL * l_cnt * r_cnt;
+            left++; 
+            right--;
         }
         else if (sum < k) {
             left++;
