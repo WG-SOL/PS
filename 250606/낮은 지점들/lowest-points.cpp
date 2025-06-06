@@ -23,7 +23,7 @@ int main() {
         }
     }
 
-    int sum=0;
+    long long sum=0;
     for(auto temp: point){
         sum+= temp.second;
     }
