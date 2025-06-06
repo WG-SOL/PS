@@ -18,7 +18,7 @@ int main() {
     int counter=0;
     for(int i=0; i<n; i++){
         if(m[arr[i]]){
-            if(m[k-arr[i]]) counter++;
+            if(m[k-arr[i]]) counter += m[k-arr[i]];
         }
     }
 
