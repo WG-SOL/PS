@@ -6,27 +6,31 @@ int n, k;
 int arr[100000];
 
 int main() {
-    cin >> n >> k; //원소수, 합이될 값
+    cin >> n >> k;
 
-    unordered_map<int,int> m;
+    unordered_map<int, int> freq;
 
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
-        m[arr[i]]++;
+        freq[arr[i]]++;
     }
 
-    int counter=0;
-    for(int i=0; i<n; i++){
-        if(m[arr[i]]){
-            if(m[k-arr[i]]) counter += m[k-arr[i]];
+    int result = 0;
+
+    for (pair<int,int> temp : freq) {
+        int y = k - temp.first;
+        if (freq.count(y)) {
+            if (temp.first == y) {
+                
+                result += temp.second * (temp.second - 1) / 2;
+            } else if (temp.first < y) {
+                
+                result += temp.second * freq[y];
+            }
         }
     }
 
-    cout << counter/2;
-
-
-
-    // Please write your code here.
+    cout << result << "\n";
 
     return 0;
 }
