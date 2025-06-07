@@ -1,45 +1,49 @@
 #include <iostream>
-#include <unordered_set>
 #include <algorithm>
-
 using namespace std;
 
+int A[100001], B[100001]; // 1~2N까지 커버
 int N;
-int B[50000];
-int A[50000];
-
-unordered_set<int> s;
 
 int main() {
     cin >> N;
+    int temp;
+
+    // B[temp] = 1 마킹
     for (int i = 0; i < N; i++) {
-        cin >> B[i];
-        s.insert(B[i]); // A Hash
+        cin >> temp;
+        B[temp] = 1;
     }
 
-    int idx=0;
-    for(int i=1; i<=2*N; i++){
-        if(s.find(i) == s.end()){
-            A[idx++] = i;
+    // A[k] = 1 if k not in B
+    int idx = 0;
+    for (int k = 1; k <= 2 * N; k++) {
+        if (B[k] != 1) {
+            A[idx++] = k;
         }
     }
 
-    sort(A,A+N);
-    sort(B,B+N);
+    // B 배열 다시 채움 (입력 순서를 저장한 건 아니니까 다시 구성)
+    idx = 0;
+    for (int k = 1; k <= 2 * N; k++) {
+        if (B[k] == 1) {
+            B[idx++] = k;
+        }
+    }
 
-    int answer=0;
-    int b_idx=0;
+    // 정렬
+    sort(A, A + N);
+    sort(B, B + N);
 
-    for(int a_idx=0; a_idx<N; a_idx++){
-        if(b_idx<N && A[a_idx]>B[b_idx]){
+    // A[i] > B[i] 카운트
+    int answer = 0, b_idx = 0;
+    for (int a_idx = 0; a_idx < N; a_idx++) {
+        if (b_idx < N && A[a_idx] > B[b_idx]) {
             answer++;
             b_idx++;
         }
     }
 
     cout << answer;
-
-    // Please write your code here.
-
     return 0;
 }
