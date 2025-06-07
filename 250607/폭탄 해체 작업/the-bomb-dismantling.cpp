@@ -16,6 +16,7 @@ int main() {
     }
 
     sort(bombs.begin(), bombs.end(), [](auto a, auto b) {
+        if(a.first==b.first) return a.second < b.second; 
         return a.first > b.first;
     });
 
