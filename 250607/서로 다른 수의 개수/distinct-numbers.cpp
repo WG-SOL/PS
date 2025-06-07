@@ -15,14 +15,8 @@ int main() {
         s.insert(arr[i]);
     }
 
-    int counter=0;
-    for (int i = 0; i < n; i++) {
-        if(s.find(arr[i]) != s.end()){
-            counter++;
-        }
-    }
 
-    cout << counter;
+    cout << s.size();
 
     // Please write your code here.
 
