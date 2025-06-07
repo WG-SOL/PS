@@ -17,9 +17,7 @@ int main() {
         frac.push_back({(double)v[i] / w[i], i});
     }
 
-    sort(frac.begin(), frac.end(), [](const pair<double, int>& a, const pair<double, int>& b) {
-        return a.first > b.first;
-    });
+    sort(frac.begin(), frac.end(), greater<>());
 
     double ans = 0.0;
 
