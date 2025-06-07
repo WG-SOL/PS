@@ -1,45 +1,35 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
 using namespace std;
 
 int N;
-int score[10000];
-int time_limit[10000];
-vector<pair<int,int>> v;
+vector<pair<int, int>> bombs; 
+bool used[10001]; 
 
 int main() {
     cin >> N;
-
     for (int i = 0; i < N; i++) {
-        cin >> score[i] >> time_limit[i];
-        v.push_back({score[i],time_limit[i]});
+        int s, t;
+        cin >> s >> t;
+        bombs.push_back({s, t});
     }
 
-    sort(v.begin(),v.end(),[](auto a, auto b){
-        if(a.second==b.second) return a.first>b.first;
-        else return a.second<b.second;
+    sort(bombs.begin(), bombs.end(), [](auto a, auto b) {
+        return a.first > b.first;
     });
 
-    int answer=0;
-    for(int i=0; i<N; i++){
-        if(v[i].second == 0){
-            for(int j=0; j<N; j++){
-                v[j].second--;
+    int answer = 0;
+    for (auto temp : bombs) {
+        for (int t = temp.second; t >= 1; t--) { //time
+            if (!used[t]) {
+                used[t] = true;
+                answer += temp.first; // score
+                break;
             }
-            continue;
-        }
-
-        answer += v[i].first;
-
-        for(int j=0; j<N; j++){
-            v[j].second--;
         }
     }
 
-    cout << answer;
-    // Please write your code here.
-
+    cout << answer << endl;
     return 0;
 }
