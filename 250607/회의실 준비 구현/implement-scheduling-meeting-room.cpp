@@ -18,7 +18,11 @@ int main() {
 
     int counter=0;
     int end=-1;
-    sort(table.begin(),table.end());
+    sort(table.begin(), table.end(), [](auto &a, auto &b) {
+        if (a.first == b.first)
+           return a.second < b.second;
+        return a.first < b.first;
+    });
 
     for(int i=0; i<n; i++){
         if(table[i].second >= end){ //겹치는대로 
