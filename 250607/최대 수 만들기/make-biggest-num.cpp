@@ -7,8 +7,6 @@ using namespace std;
 
 int n;
 
-
-
 bool cmp(const string a, const string b){
     return a+b > b+a;
 }
@@ -24,10 +22,6 @@ int main() {
 
     sort(arr.begin(),arr.end(),cmp);
 
-    if(arr[0]=="0"){
-        cout << 0;
-        return 0;
-    }
 
     for(string temp : arr){
         cout <<temp;
