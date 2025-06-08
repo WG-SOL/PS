@@ -11,7 +11,7 @@ int main() {
     cin >> m; // [1,m] 정답
     cin >> a >> b; // a,...,b시 count 최대 최소 
 
-    int min_value = INT_MAX;
+    int min_value = LLONG_MAX;
     int max_value = 0;
 
     for (int target = a; target <= b; target++) {
