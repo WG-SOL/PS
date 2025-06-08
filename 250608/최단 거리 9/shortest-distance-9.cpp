@@ -30,6 +30,7 @@ int main() {
         int s,e,w;
         cin >> s >> e >> w;
         G[s].push_back({e,w});
+        G[e].push_back({s,w});
     }
 
     cin >> A >> B; //start, end
