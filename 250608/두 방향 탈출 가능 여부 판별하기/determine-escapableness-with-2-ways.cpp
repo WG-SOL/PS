@@ -11,7 +11,9 @@ int dy[] = {0,1}; //우 하
 bool flag = false;
 
 void dfs(int x, int y){
+    if(flag) return;
     seen[x][y] = true;
+
     if(x == n-1 && y == m-1) flag = true;
     for(int i=0; i<2; i++){
         int nx = x + dx[i];
