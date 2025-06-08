@@ -11,15 +11,15 @@ int main() {
     cin >> m; // [1,m] 정답
     cin >> a >> b; // a,...,b시 count 최대 최소 
 
-    int min_value = LLONG_MAX;
-    int max_value = 0;
+    long long min_value = LLONG_MAX;
+    long long max_value = 0;
 
-    for (int target = a; target <= b; target++) {
-        int L = 1, R = m;
-        int count = 0;
+    for (long long target = a; target <= b; target++) {
+        long long L = 1, R = m;
+        long long count = 0;
 
         while (L <= R) {
-            int mid = (L + R) / 2;
+            long long mid = (L + R) / 2;
             count++;
 
             if (mid == target) {
