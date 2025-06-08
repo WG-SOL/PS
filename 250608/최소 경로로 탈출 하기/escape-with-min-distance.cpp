@@ -6,7 +6,6 @@ using namespace std;
 int n, m;
 int a[100][100];
 bool seen[100][100]={false};
-int dist[100][100];
 
 int dx[] = {1,-1,0,0};
 int dy[] = {0,0,1,-1};
@@ -30,9 +29,9 @@ bool bfs(int x, int y){
 
             if(nx<0 || ny <0 || nx>=n || ny>=m) continue;
             if(seen[nx][ny]) continue;
-            if(a[nx][ny] == 1){
+            if(a[nx][ny] != 0){
                 seen[nx][ny] = true;
-                dist[nx][ny] = dist[now_x][now_y]+1;
+                a[nx][ny] = a[now_x][now_y]+1;
                 q.push({nx,ny});
             }
         }
@@ -50,7 +49,7 @@ int main() {
         }
     }
 
-    if(bfs(0,0)) cout << dist[n-1][m-1];
+    if(bfs(0,0)) cout << a[n-1][m-1]-1;
     else cout << -1;
     
     // Please write your code here.
