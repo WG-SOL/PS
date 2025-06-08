@@ -12,7 +12,7 @@ int main() {
     for (int i = 1; i <= n; i++) {
         for(int j=1; j<=n; j++){
             if(i==j) dist[i][j] = 0;
-            else dist[i][j] = 1000001;
+            else dist[i][j] = 100001;
         }
     }
 
