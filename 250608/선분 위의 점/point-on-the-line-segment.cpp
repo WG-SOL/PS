@@ -23,7 +23,7 @@ int main() {
         //(22,59) -> 2(30,50)
         //(210,293) -> 0
         long long diff = end_p[i] - start[i];
-        vector<int> v(diff,0);
+        vector<int> v(diff+1,0);
         for(auto it= v.begin(); it != v.end(); it++){
             *it = start[i]++;
         }
