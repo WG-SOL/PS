@@ -1,32 +1,44 @@
 #include <iostream>
-
+#include <queue>
 using namespace std;
 
 int n, k;
 int grid[100][100];
 int r[10000], c[10000];
+bool seen[100][100];
 
-int counter;
 int dx[] = {1,-1,0,0};
 int dy[] = {0,0,1,-1};
-bool seen[100][100] = {false};
 
-void dfs(int x,int y){
-    if(seen[x][y] == true) return;
+
+int bfs(int x, int y, int counter){
+    queue<pair<int,int>> q;
+    q.push({x,y});
+    if(seen[x][y] == true) return counter;
     seen[x][y] = true;
     counter++;
 
-    for(int i=0; i<4; i++){
-        int nx = x + dx[i];
-        int ny = y + dy[i];
 
-        if(nx<1 || ny<1 || nx>n || ny>n) continue;
-        if(grid[nx][ny]==0 && seen[nx][ny] == false){
-            dfs(nx,ny);
+    while(!q.empty()){
+        pair<int,int> now = q.front();
+        q.pop();
+        int now_x = now.first;
+        int now_y = now.second;
+
+        for(int i=0; i<4; i++){
+            int nx = now_x + dx[i];
+            int ny = now_y + dy[i];
+
+            if(nx<1 || ny<1 || nx>n || ny>n) continue;
+            if(grid[nx][ny] == 0 && seen[nx][ny] == false){
+                q.push({nx,ny});
+                seen[nx][ny] = true;
+                counter++;
+            }
         }
     }
+    return counter;
 }
-
 
 
 int main() {
@@ -38,9 +50,10 @@ int main() {
         }
     }
 
+    int counter=0;
     for (int i = 0; i < k; i++) {
         cin >> r[i] >> c[i];
-        dfs(r[i],c[i]);
+        counter = bfs(r[i],c[i],counter);
     }
 
     cout << counter;
@@ -48,3 +61,4 @@ int main() {
 
     return 0;
 }
+
