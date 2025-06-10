@@ -66,7 +66,9 @@ int main() {
     if(max_value==0) {
         cout << 1 << " " << max_value; 
     }
-    cout << ans << " " << max_value;
+    else{
+        cout << ans << " " << max_value;
+    }
     // Please write your code here.
 
     return 0;
