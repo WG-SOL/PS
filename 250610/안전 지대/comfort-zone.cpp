@@ -4,7 +4,6 @@ using namespace std;
 
 int N, M;
 int grid[50][50];
-int temp_map[50][50];
 int max_value; // 최댓값
 bool seen[50][50]={false}; //방문배열
 int area;
@@ -14,7 +13,7 @@ int dx[] = {1,-1,0,0};
 int dy[] = {0,0,-1,1};
 
 
-void dfs(int x, int y){
+void dfs(int x, int y, int rain){
     seen[x][y] = true;
 
     for(int i=0; i<4; i++){
@@ -22,8 +21,8 @@ void dfs(int x, int y){
         int ny = y + dy[i];
 
         if(nx<0 || ny<0 || nx>=N || ny>=M) continue;
-        if(seen[nx][ny] == false && temp_map[nx][ny] > 0 ){
-            dfs(nx,ny);
+        if(seen[nx][ny] == false && grid[nx][ny] > rain ){
+            dfs(nx,ny,rain);
         }
     }
 
@@ -44,15 +43,14 @@ int main() {
         area=0;
         for(int i=0; i<N; i++){
             for(int j=0; j<M; j++){
-                temp_map[i][j] = grid[i][j] - rain;
                 seen[i][j] = false;
             }
         }
 
         for(int i=0; i<N; i++){
             for(int j=0; j<M; j++){
-                if(temp_map[i][j] > 0 && seen[i][j] == false){
-                    dfs(i,j);
+                if(grid[i][j] > rain && seen[i][j] == false){
+                    dfs(i,j,rain);
                     area++;
                 }
             }
@@ -70,7 +68,6 @@ int main() {
         cout << ans << " " << max_value;
     }
     // Please write your code here.
-
     return 0;
 }
 
