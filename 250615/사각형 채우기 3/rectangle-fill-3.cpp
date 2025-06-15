@@ -2,6 +2,7 @@
 
 using namespace std;
 long long DP[1001];
+const int MOD = 1e9 + 7;
 
 int n;
 
@@ -13,13 +14,13 @@ int main() {
     DP[1] = 2;
     DP[2] = 7;
 
-    for (int i = 3; i <= n; i++) {
-        DP[i] = ((DP[i - 1]%1000000007) * 2 + (DP[i - 2]%1000000007) * 3) % 1000000007;
+    for (int i = 3; i <= n; ++i) {
+    DP[i] = (DP[i - 1] * 2 % MOD + DP[i - 2] * 3 % MOD) % MOD;
 
-        for (int j = 3; j <= i; j++) {
-            DP[i] = ((DP[i] % 1000000007) + (DP[i - j] % 1000000007))%1000000007 * 2;
-        }
+    for (int j = 3; j <= i; ++j) {
+        DP[i] = (DP[i] + DP[i - j] * 2 % MOD) % MOD;
     }
+}
 
     cout << DP[n];
 
