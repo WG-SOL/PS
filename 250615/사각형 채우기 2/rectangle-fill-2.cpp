@@ -4,7 +4,7 @@ using namespace std;
 
 int n;
 long long DP[1001];
-const int MOD = 1e9 + 7;
+const int MOD = 10007;
 
 int main() {
     cin >> n;
