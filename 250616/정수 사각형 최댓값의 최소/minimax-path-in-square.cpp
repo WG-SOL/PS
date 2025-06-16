@@ -18,7 +18,7 @@ int main() {
     DP[1][1] = grid[1][1];
     for(int i=2; i<=n; i++){
         DP[1][i] = max(DP[1][i-1], grid[1][i]);
-        DP[i][1] = max(DP[i-1][1], grid[1][i]); 
+        DP[i][1] = max(DP[i-1][1], grid[i][1]); 
     }
 
     
