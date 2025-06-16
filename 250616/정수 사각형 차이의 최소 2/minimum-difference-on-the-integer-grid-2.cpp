@@ -52,8 +52,8 @@ bool bfs(int min_val, int max_val) {
 int main() {
     cin >> n;
 
-    int max_num = 1;
-    int min_num = INT_MAX;
+    int max_num = 1; 
+    int min_num = 100;
 
     for (int i = 1; i <= n; ++i){
         for (int j = 1; j <= n; ++j){
@@ -63,9 +63,9 @@ int main() {
         }
     }
 
-    int result = INT_MAX;
+    int result = 100;
 
-    for (int min_val = min_num; min_val <= max_num; ++min_val) {
+    for (int min_val = min_num; min_val <= max_num; min_val++) {
         int low = 0, high = max_num - min_val;
 
         while (low <= high) {
