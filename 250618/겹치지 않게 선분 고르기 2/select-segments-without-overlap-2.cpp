@@ -1,36 +1,33 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
 
 using namespace std;
 
 int n;
-int x1[1000];
-int x2[1000];
-vector<pair<int,int>> v;
+pair<int,int> lines[1000];
+int DP[1000];
 
 int main() {
     cin >> n;
-    for (int i = 0; i < n; i++) {
-        cin >> x1[i] >> x2[i]; //s,e
-        v.push_back({x2[i],x1[i]}); //e,s
+
+    for(int i = 0; i < n; i++) {
+        cin >> lines[i].first >> lines[i].second;  // s,e;
     }
 
-    int counter=0;
-    int end_point=-1;
-    sort(v.begin(),v.end());
+    sort(lines, lines + n); // s기준
 
-    for(int i=0; i<v.size(); i++){
-        if(v[i].second > end_point){//e > s
-            end_point = v[i].first;
-            counter++; 
+    for(int i = 0; i < n; i++) {
+        DP[i] = 1;  // 본인
+
+        for(int j = 0; j < i; j++) {
+            // i번째 선분을 골라놓고 앞에서부터 체크해 만들 수 있는 최대개수 
+            if(lines[j].second < lines[i].first) {
+                DP[i] = max(DP[i], DP[j] + 1);
+            }
         }
     }
 
-    cout << counter;
-
-
-    // Please write your code here.
+    cout << *max_element(DP,DP+n);
 
     return 0;
 }
