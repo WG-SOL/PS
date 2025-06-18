@@ -15,7 +15,7 @@ int main() {
     }
 
     for (int i = 1; i <= M; i++) {
-        DP[i] = INT_MAX;
+        DP[i] = 10001;
     }
     DP[0] = 0;
 
@@ -27,7 +27,7 @@ int main() {
         }
     }
 
-    if(DP[M] == INT_MAX){
+    if(DP[M] == 10001){
         cout << -1;
     }
     else{
