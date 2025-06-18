@@ -1,24 +1,37 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-int N;
-long long s[1001], e[1001];
-int p[1001];
-long long DP[1001];
+struct Job {
+    long long s, e;
+    int p;
+};
+
+bool cmp(const Job &a, const Job &b) {
+    return a.e < b.e; 
+}
 
 int main() {
+    int N;
     cin >> N;
+    vector<Job> table(N);
+
     for (int i = 0; i < N; i++) {
-        cin >> s[i] >> e[i] >> p[i];
+        cin >> table[i].s >> table[i].e >> table[i].p;
     }
 
+    sort(table.begin(), table.end(), cmp); 
+
+    vector<long long> DP(N);
     long long ans = 0;
+
     for (int i = 0; i < N; i++) {
-        DP[i] = p[i]; 
+        DP[i] = table[i].p;
 
         for (int j = 0; j < i; j++) {
-            if (e[j] < s[i]) { 
-                DP[i] = max(DP[i], DP[j] + p[i]);
+            if (table[j].e < table[i].s) {
+                DP[i] = max(DP[i], DP[j] + table[i].p);
             }
         }
 
