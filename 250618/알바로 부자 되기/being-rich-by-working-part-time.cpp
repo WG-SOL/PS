@@ -22,9 +22,6 @@ int main() {
             }
         }
 
-        if (i > 0)
-            DP[i] = max(DP[i], DP[i - 1]);
-
         ans = max(ans, DP[i]);
     }
 
