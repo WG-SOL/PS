@@ -19,7 +19,6 @@ int main() {
     // 전체 탐색
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= m; j++) {
-            if (DP[i][j] == 0) continue;
 
             for (int x = i + 1; x <= n; x++) {
                 for (int y = j + 1; y <= m; y++) {
