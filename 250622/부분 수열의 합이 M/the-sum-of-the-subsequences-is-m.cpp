@@ -4,7 +4,7 @@ using namespace std;
 
 int n, m;
 int A[100];
-int DP[101];
+int DP[10001];
 
 int main() {
     cin >> n >> m;
